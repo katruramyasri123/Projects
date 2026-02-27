@@ -15,7 +15,13 @@ spring:
 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: ${EUREKA_URL}
+      
   instance:
     prefer-ip-address: false
+    hostname: ${RAILWAY_PUBLIC_DOMAIN}
+    secure-port-enabled: true
+    non-secure-port-enabled: true

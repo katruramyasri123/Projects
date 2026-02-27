@@ -54,3 +54,6 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: ${EUREKA_URL}
+      hostname: ${RAILWAY_PUBLIC_DOMAIN}
+      secure-port-enabled: true
+      non-secure-port-enabled: true
