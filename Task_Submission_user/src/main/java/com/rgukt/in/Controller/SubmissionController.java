@@ -32,43 +32,38 @@ public class SubmissionController {
 	@Autowired
 	private SubmissionService subService;
 
+ 
 	@PostMapping("/submit")
-	public ResponseEntity<Submission> submitTask(@RequestParam Long taskid, @RequestParam String githubLink,
-			@RequestHeader("Authorization") String authHeader) throws Exception {
-		UserDto user = userClient.getUserProfile(authHeader);
-		Submission s = subService.submitTask(taskid, githubLink, user.getId(), authHeader);
-		return new ResponseEntity<>(s, HttpStatus.CREATED);
+	public ResponseEntity<Submission> submitTask(@RequestParam Long taskid, @RequestParam String githubLink, @RequestHeader("Authorization") String authHeader) throws Exception{
+		UserDto user=userClient.getUserProfile(authHeader);
+		Submission s=subService.submitTask(taskid, githubLink, user.getId(), authHeader);
+		return new  ResponseEntity<>(s,HttpStatus.CREATED);
 	}
-
 	@GetMapping("/{id}")
-	public ResponseEntity<Submission> getSubmissionById(@PathVariable("id") Long id,
-			@RequestHeader("Authorization") String authHeader) throws Exception {
-		UserDto user = userClient.getUserProfile(authHeader);
-		Submission s = subService.getTaskSubmissionById(id);
-		return new ResponseEntity<>(s, HttpStatus.OK);
+	public ResponseEntity<Submission> getSubmissionById(@PathVariable("id") Long id,@RequestHeader("Authorization") String authHeader) throws Exception{
+		UserDto user=userClient.getUserProfile(authHeader);
+		Submission s=subService.getTaskSubmissionById(id);
+		return new ResponseEntity<>(s,HttpStatus.OK);
 	}
-
 	@GetMapping
-	public ResponseEntity<List<Submission>> getAllSubmissions(@RequestHeader("Authorization") String authHeader) {
-		UserDto user = userClient.getUserProfile(authHeader);
-		List<Submission> submissions = subService.getAllSubmissions();
-		return new ResponseEntity<>(submissions, HttpStatus.OK);
+	public ResponseEntity<List<Submission>> getAllSubmissions(@RequestHeader("Authorization") String authHeader){
+		UserDto user=userClient.getUserProfile(authHeader);
+		List<Submission> submissions=subService.getAllSubmissions();
+		return new ResponseEntity<>(submissions,HttpStatus.OK);
 	}
-
 	@GetMapping("/task/{taskid}")
-	public ResponseEntity<List<Submission>> getSubmissionByTaskId(@RequestHeader("Authorization") String authHeader,
-			@PathVariable("taskid") Long id) {
-		UserDto user = userClient.getUserProfile(authHeader);
-		List<Submission> s = subService.getTaskSubmissionByTaskId(id);
-		return new ResponseEntity<>(s, HttpStatus.OK);
+	public ResponseEntity<List<Submission>> getSubmissionByTaskId(@RequestHeader("Authorization") String authHeader,@PathVariable("taskid") Long id){
+		UserDto user=userClient.getUserProfile(authHeader);
+		List<Submission> s=subService.getTaskSubmissionByTaskId(id);
+		return new ResponseEntity<>(s,HttpStatus.OK);
 	}
-
 	@PutMapping("/{id}")
-	public ResponseEntity<Submission> acceptOrDecline(@RequestHeader("Authorization") String authHeader,
-			@RequestParam String status, @PathVariable("id") Long id) throws Exception {
-		Submission s = subService.acceptOrDecline(authHeader, id, status);
-		return new ResponseEntity<>(s, HttpStatus.OK);
-
+	public ResponseEntity<Submission> acceptOrDeclin(@RequestHeader("Authorization") String authHeader, @RequestParam String status, @PathVariable("id") Long id) throws Exception{
+		Submission s=subService.acceptOrDecline(authHeader, id, status);
+		return new ResponseEntity<>(s,HttpStatus.OK);
+		
 	}
+
+	
 
 }

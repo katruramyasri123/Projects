@@ -25,7 +25,6 @@ public class User {
 	private String password;
 	private String email;
 	private String role;
-	public User() {}
 	public Long getId() {
 		return id;
 	}
@@ -56,13 +55,6 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public User(Long id, String fullName, String password, String email, String role) {
-		super();
-		this.id = id;
-		this.fullName = fullName;
-		this.password = password;
-		this.email = email;
-		this.role = role;
-	}
+	
  
 }
